@@ -16,7 +16,6 @@ var requestSettings = {
 request(requestSettings, function (error, response, body) {
   if (!error && response.statusCode == 200) {
     var feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.decode(body);
-    // var feed = GtfsRealtimeBindings.transit_realtime.FeedMessage.toJSON(body);
     feed.entity.forEach(function(entity) {
       if (entity) {
         console.log(entity.toJSON());
@@ -26,7 +25,6 @@ request(requestSettings, function (error, response, body) {
   if (error) {
     console.log("error!");
   };
-  // console.log("Body!" + body);
 });
 
 console.log("running!")
