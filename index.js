@@ -1,6 +1,9 @@
 var GtfsRealtimeBindings = require('gtfs-realtime-bindings');
 var request = require('request');
 
+// If you want to view the data from a different request
+// Just uncomment the one you want to view and make sure 
+// the other two are commented
 var requestSettings = {
   method: 'GET',
   // trip updates:
@@ -9,7 +12,7 @@ var requestSettings = {
   // vehicle positions:
   url: 'https://data.edmonton.ca/download/7qed-k2fc/application%2Foctet-stream',
   
-  // alerts:
+  // trip alerts:
   // url: 'https://data.edmonton.ca/download/rqaa-jae6/application%2Foctet-stream',
   encoding: null
 };
@@ -21,10 +24,12 @@ request(requestSettings, function (error, response, body) {
         console.log(entity.toJSON());
       }
     });
-  }
-  if (error) {
+  } else if (error) {
     console.log("error!");
-  };
+  } else {
+    // We shouldn't hit this?
+    console.log("Request failed?");
+  }
 });
 
-console.log("running!")
+console.log("Fetching data...")
